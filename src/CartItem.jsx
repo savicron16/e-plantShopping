@@ -6,6 +6,7 @@ import './CartItem.css';
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
+  const [checkoutMessage, setCheckoutMessage] = React.useState('');
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
@@ -15,12 +16,13 @@ const CartItem = ({ onContinueShopping }) => {
     }, 0).toFixed(2);
   };
 
-  const handleContinueShopping = (e) => {
-    e.preventDefault();
+  const handleContinueShopping = () => {
     onContinueShopping();
   };
 
-
+  const handleCheckoutShopping = () => {
+    setCheckoutMessage('✅ Thank you for shopping with Paradise Nursery!');
+  };
 
   const handleIncrement = (item) => {
     dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
@@ -76,10 +78,15 @@ const CartItem = ({ onContinueShopping }) => {
         <br />
         <button 
             className="get-started-button1" 
-            onClick={() => alert('Thank you for shopping with Paradise Nursery')}
+            onClick={handleCheckoutShopping}
             >
                 Checkout
         </button>
+        {checkoutMessage && (
+        <div className='checkout-message'>
+            {checkoutMessage}
+        </div>
+        )}
       </div>
     </div>
   );
