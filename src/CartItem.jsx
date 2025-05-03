@@ -67,9 +67,19 @@ const CartItem = ({ onContinueShopping }) => {
       </div>
       <div style={{ marginTop: '20px', color: 'black' }} className='total_cart_amount'></div>
       <div className="continue_shopping_btn">
-        <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
+        <button 
+            className="get-started-button" 
+            onClick={handleContinueShopping}
+            >
+                Continue Shopping
+        </button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button 
+            className="get-started-button1" 
+            onClick={() => alert('Thank you for shopping with Paradise Nursery')}
+            >
+                Checkout
+        </button>
       </div>
     </div>
   );
